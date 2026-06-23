@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design tokens ──────────────────────────────────────────────── */
+:root {
+  /* Light mode – warm parchment inspired by physical Iqro' books */
+  --color-page:    #FDFAF5;
+  --color-primary: #1A1310;
+  --color-muted:   #F0EBE2;
+  --color-border:  #DDD6CB;
+  --color-muted-text: #7A6F65;
+  --color-accent:  #C0392B; /* deep vermilion – ink on paper */
+}
+
+.dark {
+  --color-page:    #121010;
+  --color-primary: #EDE8E2;
+  --color-muted:   #1E1A18;
+  --color-border:  #2E2925;
+  --color-muted-text: #7A7068;
+  --color-accent:  #E05540;
+}
+
+/* ── Base ───────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--color-page);
+  color: var(--color-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100svh;
+}
+
+/* ── Utility classes via CSS variables ──────────────────────────── */
+.bg-page      { background-color: var(--color-page); }
+.bg-muted     { background-color: var(--color-muted); }
+.text-primary { color: var(--color-primary); }
+.text-muted-text { color: var(--color-muted-text); }
+.text-accent  { color: var(--color-accent); }
+.bg-accent    { background-color: var(--color-accent); }
+.border-border { border-color: var(--color-border); }
+.border-muted  { border-color: var(--color-muted); }
+
+/* ── Japanese font class ────────────────────────────────────────── */
+.font-jp {
+  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--color-page); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 99px; }
+
+/* ── Accent bg with opacity helper ─────────────────────────────── */
+.bg-accent\/10 { background-color: color-mix(in srgb, var(--color-accent) 10%, transparent); }
+.ring-accent   { --tw-ring-color: var(--color-accent); }
