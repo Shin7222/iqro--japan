@@ -1,11 +1,4 @@
-export type PageType =
-  | "intro"
-  | "new-letter"
-  | "drill"
-  | "review"
-  | "summary"
-  | "dakuten"
-  | "exam";
+export type PageType = "intro" | "new-letter" | "drill" | "review" | "summary" | "dakuten" | "exam";
 
 export interface DrillGroup {
   items: string[];
@@ -29,28 +22,11 @@ export interface ReviewPage {
   pairs?: string[][];
 }
 
-export interface SummaryPage {
-  type: "summary";
-  pageNumber: number;
-}
-
-export interface DakutenPage {
-  type: "dakuten";
-  pageNumber: number;
-}
-
-export interface ExamPage {
-  type: "exam";
-  pageNumber: number;
-}
+export interface SummaryPage  { type: "summary";  pageNumber: number; }
+export interface DakutenPage  { type: "dakuten";  pageNumber: number; }
+export interface ExamPage     { type: "exam";     pageNumber: number; }
 
 export type Page = NewLetterPage | ReviewPage | SummaryPage | DakutenPage | ExamPage;
-
-export interface Volume {
-  id: number;
-  title: string;
-  pages: Page[];
-}
 
 export interface ExamQuestion {
   type: "recognize" | "distinguish" | "read-word" | "read-sentence";
@@ -62,6 +38,8 @@ export interface ExamQuestion {
 export interface Progress {
   currentVolume: number;
   currentPage: number;
+  // per-volume page position
+  pageByVolume: Record<number, number>;
   completedVolumes: number[];
   examScores: Record<number, number>;
   lastUpdated: string;

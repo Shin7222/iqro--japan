@@ -11,15 +11,8 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
-        jp: ["Noto Sans JP", "Hiragino Sans", "Yu Gothic", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
-      },
-      colors: {
-        page: "var(--color-page)",
-        muted: "var(--color-muted)",
-        border: "var(--color-border)",
-        accent: "var(--color-accent)",
-        primary: "var(--color-primary)",
+        jp: ["'Noto Sans JP'", "Hiragino Sans", "Yu Gothic", "sans-serif"],
+        mono: ["'JetBrains Mono'", "monospace"],
       },
     },
   },
