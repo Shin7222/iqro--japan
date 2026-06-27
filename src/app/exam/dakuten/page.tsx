@@ -18,7 +18,7 @@ export default function ExamDakutenPage() {
 
   const handlePass = () => {
     if (!state) return;
-    let next = {
+    let next: UserState = {
       ...state,
       examStatus: { ...state.examStatus, dakuten: "passed" },
     };
