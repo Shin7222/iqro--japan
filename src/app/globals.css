@@ -2,58 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Design tokens ──────────────────────────────────────────────── */
 :root {
-  --color-page:       #FDFAF5;
-  --color-primary:    #1A1310;
-  --color-muted:      #F0EBE2;
-  --color-border:     #DDD6CB;
-  --color-muted-text: #7A6F65;
-  --color-accent:     #C0392B;
+  --foreground: #09090b;
+  --background: #fafaf9;
 }
 
-.dark {
-  --color-page:       #121010;
-  --color-primary:    #EDE8E2;
-  --color-muted:      #1E1A18;
-  --color-border:     #2E2925;
-  --color-muted-text: #7A7068;
-  --color-accent:     #E05540;
-}
-
-/* ── Base ───────────────────────────────────────────────────────── */
-* { box-sizing: border-box; }
-html { -webkit-tap-highlight-color: transparent; }
-
-body {
-  background-color: var(--color-page);
-  color: var(--color-primary);
-  font-family: 'Inter', system-ui, sans-serif;
-  min-height: 100svh;
-}
-
-/* ── Custom utility classes ─────────────────────────────────────── */
-@layer utilities {
-  .bg-page         { background-color: var(--color-page) !important; }
-  .bg-muted        { background-color: var(--color-muted) !important; }
-  .bg-accent       { background-color: var(--color-accent) !important; }
-  .bg-accent-soft  { background-color: color-mix(in srgb, var(--color-accent) 10%, transparent) !important; }
-
-  .text-primary    { color: var(--color-primary) !important; }
-  .text-muted-text { color: var(--color-muted-text) !important; }
-  .text-accent     { color: var(--color-accent) !important; }
-
-  .border-border   { border-color: var(--color-border) !important; }
-
-  .font-jp {
-    font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
-    font-weight: 500;
-    line-height: 1;
-    letter-spacing: -0.01em;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground: #fafafa;
+    --background: #09090b;
   }
 }
 
-/* ── Scrollbar ──────────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--color-page); }
-::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 99px; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background: #09090b;
+  color: #fafafa;
+}
+
+/* Disable tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Japanese font utility */
+.font-jp {
+  font-family: "Noto Sans JP", serif;
+}

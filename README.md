@@ -1,49 +1,82 @@
-# Iqro' Jepang
+# IQRO JEPANG
 
-Aplikasi belajar membaca Hiragana dengan metode Iqro'.
+Aplikasi web belajar membaca Hiragana menggunakan Metode Iqro'.
 
-## Cara Menjalankan
+## Stack
+- Next.js 15 App Router
+- TypeScript (strict)
+- Tailwind CSS
+- Local Storage (tanpa database)
+- Google Fonts: Noto Sans JP
+
+## Cara Jalankan
 
 ```bash
 npm install
 npm run dev
 ```
 
-Buka `http://localhost:3000`
+Buka [http://localhost:3000](http://localhost:3000)
 
-## Fitur
+## Deploy ke Vercel
 
-- **46 huruf Hiragana** diperkenalkan satu per satu
-- **Tanpa romaji** pada latihan — hanya pada pengenalan huruf baru
-- **Review otomatis** setelah setiap kelompok huruf
-- **Halaman Ringkasan** seluruh Hiragana
-- **Halaman Dakuten** perbandingan か→が, dll.
-- **Ujian Akhir** 4 bagian (24 soal)
-- **Sistem nilai**: Lulus (≥80), Latihan (60–79), Ulangi (<60)
-- **Progress tersimpan** di LocalStorage
-- **Dark Mode & Light Mode**
-- **Mobile First** responsive
+```bash
+npm i -g vercel
+vercel
+```
 
-## Struktur
+## Struktur Project
 
 ```
 src/
-├── data/
-│   ├── curriculum.ts   # Generator otomatis semua halaman dari DB hiragana
-│   └── exam.ts         # Soal ujian akhir
-├── types/index.ts       # TypeScript types
-├── lib/
-│   ├── progress.ts     # LocalStorage progress
-│   └── ThemeContext.tsx
-└── components/
-    ├── reader/
-    │   ├── Reader.tsx        # Orchestrator utama
-    │   ├── NewLetterPage.tsx
-    │   ├── ReviewPage.tsx
-    │   ├── SummaryPage.tsx
-    │   ├── DakutenPage.tsx
-    │   └── ExamPage.tsx
-    └── ui/
-        ├── NavBar.tsx
-        └── HomeScreen.tsx
+├── app/                    # Next.js App Router pages
+│   ├── page.tsx            # Home / Beranda
+│   ├── lesson/[id]/        # Halaman belajar huruf
+│   ├── exam/dakuten/       # Ujian dakuten
+│   ├── exam/reading/       # Ujian membaca
+│   ├── certificate/        # Sertifikat kelulusan
+│   └── chart/              # Tabel hiragana
+├── components/             # Reusable components
+│   ├── LessonView.tsx      # Layout pelajaran utama (sesuai screenshot)
+│   ├── PracticeCard.tsx    # Grid latihan dengan divider dashed
+│   ├── NavigationButtons.tsx
+│   ├── ExamDakuten.tsx
+│   ├── ExamReading.tsx
+│   ├── Certificate.tsx
+│   ├── ProgressBar.tsx
+│   ├── BadgeCard.tsx
+│   └── ThemeToggle.tsx
+├── lib/                    # Business logic
+│   ├── lessonGenerator.ts  # Generator materi otomatis dari JSON
+│   ├── examEngine.ts       # Logika ujian
+│   ├── storage.ts          # localStorage wrapper
+│   ├── progress.ts         # Tracking progress
+│   └── xp.ts               # XP & level system
+├── data/                   # JSON content
+│   ├── hiragana.json       # 46 huruf hiragana
+│   ├── dakuten.json        # 25 huruf dakuten + handakuten
+│   ├── readingExam.json    # 5 soal ujian membaca
+│   └── volumes.json        # 8 jilid
+└── types/                  # TypeScript types
+    ├── lesson.ts
+    ├── exam.ts
+    └── user.ts
 ```
+
+## Filosofi Iqro
+
+- Satu huruf baru per halaman
+- Huruf lama terus diulang
+- Fokus membaca, bukan menghafal
+- Tidak ada lompatan materi
+- Harus menguasai sebelum naik jilid
+
+## Tampilan Pelajaran
+
+Mengikuti screenshot referensi:
+- Header: ホーム · nomor halaman · toggle tema
+- Tombol navigasi: ← Sebelumnya | Berikutnya → (merah)
+- Huruf baru tampil sangat besar (merah)
+- Romaji di bawah huruf
+- Latihan kombinasi dengan divider dashed
+- Layout 2 kolom untuk kombinasi pendek

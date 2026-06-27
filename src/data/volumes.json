@@ -1,0 +1,10 @@
+[
+  { "id": 1, "title": "Hiragana Dasar",      "icon": "あ",  "description": "Pelajari 46 huruf hiragana dari nol" },
+  { "id": 2, "title": "Dakuten & Handakuten","icon": "が",  "description": "Huruf bersuara dan semi-bersuara" },
+  { "id": 3, "title": "Yoon",                "icon": "きゃ","description": "Kombinasi huruf kecil ya, yu, yo" },
+  { "id": 4, "title": "Katakana Dasar",      "icon": "ア",  "description": "46 huruf katakana" },
+  { "id": 5, "title": "Kosakata Dasar",      "icon": "語",  "description": "Kata-kata dasar bahasa Jepang" },
+  { "id": 6, "title": "Kalimat Dasar",       "icon": "文",  "description": "Membuat kalimat sederhana" },
+  { "id": 7, "title": "Paragraf Pendek",     "icon": "📖", "description": "Membaca paragraf pendek" },
+  { "id": 8, "title": "Persiapan JLPT N5",  "icon": "🎓", "description": "Siap ujian JLPT N5" }
+]

@@ -1,0 +1,7 @@
+[
+  { "text": "おはようございます",          "answer": "ohayou gozaimasu" },
+  { "text": "ありがとうございます",          "answer": "arigatou gozaimasu" },
+  { "text": "わたしはがくせいです",          "answer": "watashi wa gakusei desu" },
+  { "text": "きょうはいいてんきです",        "answer": "kyou wa ii tenki desu" },
+  { "text": "にほんごをべんきょうしています", "answer": "nihongo o benkyou shiteimasu" }
+]

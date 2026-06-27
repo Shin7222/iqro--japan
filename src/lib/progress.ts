@@ -1,54 +1,29 @@
-import type { Progress } from "@/types";
+// src/lib/progress.ts
 
-const KEY = "iqro_jepang_progress";
+import type { UserState } from "@/types/user";
+import hiragana from "@/data/hiragana.json";
 
-export const defaultProgress: Progress = {
-  currentVolume: 1,
-  currentPage: 0,
-  pageByVolume: { 1: 0, 2: 0 },
-  completedVolumes: [],
-  examScores: {},
-  lastUpdated: new Date().toISOString(),
-};
+export const TOTAL_LESSONS = hiragana.length;
 
-export function loadProgress(): Progress {
-  if (typeof window === "undefined") return defaultProgress;
-  try {
-    const raw = localStorage.getItem(KEY);
-    if (!raw) return defaultProgress;
-    const p = JSON.parse(raw) as Progress;
-    // Migrate older saves that lack pageByVolume
-    if (!p.pageByVolume) p.pageByVolume = { 1: p.currentPage ?? 0, 2: 0 };
-    return p;
-  } catch {
-    return defaultProgress;
-  }
+export function getLessonProgress(state: UserState): number {
+  return Math.round((state.completedLessons.length / TOTAL_LESSONS) * 100);
 }
 
-export function saveProgress(p: Progress): void {
-  if (typeof window === "undefined") return;
-  localStorage.setItem(KEY, JSON.stringify({ ...p, lastUpdated: new Date().toISOString() }));
+export function isVolumeUnlocked(state: UserState, volumeId: number): boolean {
+  return state.unlockedVolumes.includes(volumeId);
 }
 
-export function switchVolume(p: Progress, volume: number): Progress {
-  // Save current page into pageByVolume before switching
-  const next: Progress = {
-    ...p,
-    pageByVolume: { ...p.pageByVolume, [p.currentVolume]: p.currentPage },
-    currentVolume: volume,
-    currentPage: p.pageByVolume?.[volume] ?? 0,
+export function completeLesson(state: UserState, lessonId: number): UserState {
+  const completedLessons = state.completedLessons.includes(lessonId)
+    ? state.completedLessons
+    : [...state.completedLessons, lessonId];
+
+  const progress = Math.round((completedLessons.length / TOTAL_LESSONS) * 100);
+
+  return {
+    ...state,
+    completedLessons,
+    progress,
+    currentLesson: state.currentLesson + 1,
   };
-  saveProgress(next);
-  return next;
-}
-
-export function resetAllProgress(): void {
-  if (typeof window === "undefined") return;
-  localStorage.removeItem(KEY);
-}
-
-export function getGrade(score: number): "lulus" | "latihan" | "ulangi" {
-  if (score >= 80) return "lulus";
-  if (score >= 60) return "latihan";
-  return "ulangi";
 }
